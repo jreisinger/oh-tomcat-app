@@ -1,9 +1,12 @@
 Tomcat script for running applications as seaprate instance.
 
-Copy "oh-tomcat-app" to "/etc/init.d", create symlink "ln -s /etc/init.d/oh-tomcat-app /etc/init.d/&lt;your_app&gt;"
-Create CATALINA_BASE in "/var/app/&lt;your_app&gt;". You can place config (JAVA_HOME etc.) in "/etc/default/&lt;your_app&gt;".
-This file is read on startup.
+<ul>
+    <li>Copy <b>oh-tomcat-app</b> to <b>/etc/init.d</b></li>
+    <li>create symlink <b>ln -s /etc/init.d/oh-tomcat-app /etc/init.d/&lt;your_app&gt;</b></li>
+    <li>Create CATALINA_BASE in <b>/var/app/&lt;your_app&gt;</b></li>
+    <li>Place config (JAVA_HOME etc.) in <b>/etc/default/&lt;your_app&gt;</b> This file is read on startup</li>
+</ul>
 
-Then you can just start you application by calling "/etc/init.d/&lt;your_app&gt; start"
+Then you can just start you application by calling <b>/etc/init.d/&lt;your_app&gt; start</b>
 
-Instead of copying the script, you can create .deb package by executing "./build n", where n is build number (ex. 1).
+Instead of copying the script, you can create .deb package by executing <b>./build <i>n</i></b> where <i>n</i> is build number (ex. 1).
