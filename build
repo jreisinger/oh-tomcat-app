@@ -6,27 +6,8 @@ then
     exit 1
 fi
 
-BUILD_NUMBER=$1
+VERSION="0.1-$1"
 TOPDIR=debian
-DEB_DIR=DEBIAN
-
-if [ ! -f ./$DEB_DIR/control ]
-then
-    echo "control file $DEB_DIR/control not found"
-    exit 1
-fi
-
-# copy DEBIAN/* files to debian/DEBIAN/ and replace ${BUILD_NUMBER} if any
-mkdir -p ./$TOPDIR/$DEB_DIR
-for f in ./$DEB_DIR/*
-do
-    sed -e "s/\${BUILD_NUMBER}/$BUILD_NUMBER/g" ./$f > ./$TOPDIR/$f
-done
-
-# get Package, Version and Architecture from control file
-PACKAGE=$(awk /^Package:/'{print $2}' ./$TOPDIR/$DEB_DIR/control)
-VERSION=$(awk /^Version:/'{print $2}' ./$TOPDIR/$DEB_DIR/control)
-ARCHITECTURE=$(awk /^Architecture:/'{print $2}' ./$TOPDIR/$DEB_DIR/control)
 
 # create deb tree
 INIT_DIR=./$TOPDIR/etc/init.d
@@ -37,13 +18,5 @@ find ./$TOPDIR -type d | xargs chmod 755
 
 cp ./oh-tomcat-app $INIT_DIR
 
-# remove existing deb packages
-rm -f ./*.deb
-
-# build package
-fakeroot dpkg-deb --build ./debian > /dev/null
-
-# clean up build root (topdir)
-rm -rf ./$TOPDIR
-
-mv debian.deb ${PACKAGE}_${VERSION}_${ARCHITECTURE}.deb
+# build deb package
+oh-deb-build $VERSION
