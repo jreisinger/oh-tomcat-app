@@ -3,7 +3,7 @@
 # /etc/init.d/oh-tomcat-app -- startup script for the tomcat apps
 #
 # generic init script for tomcat apps. this script cannot not be
-# run directly. create CATALINA_BASE in /var/app/{name} and then
+# run directly. create CATALINA_BASE in /opt/{name} and then
 # create sym link {name} pointing to this script, then create default
 # setting (ex. JAVA_HOME, JAVA_OPTS etc.) in /etc/default/{name}
 
@@ -17,7 +17,7 @@ APP_LOG_DIR=/var/log/$APP_NAME
 DEFAULT=/etc/default/$APP_NAME
 
 CATALINA_HOME=/usr/share/tomcat7
-CATALINA_BASE=/var/app/$APP_NAME
+CATALINA_BASE=/opt/$APP_NAME
 
 CATALINA_TMPDIR=/tmp/tomcat7-$APP_NAME-tmp
 CATALINA_OUT=$CATALINA_BASE/logs/catalina.out
