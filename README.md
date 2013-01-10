@@ -1,5 +1,5 @@
 dummy line
-
+dummy line
 
 Tomcat script for running applications as seaprate instance.
 
